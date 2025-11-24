@@ -30,8 +30,8 @@ public class CategoriasController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CategoriaResponseDTO> obtenerIntercambio(@PathVariable Long idcat) {
-        CategoriaResponseDTO categoriaResponseDTO = categoriasService.obtenerPorId(idcat).orElse(null);
+    public ResponseEntity<CategoriaResponseDTO> obtenerIntercambio(@PathVariable Long id) {
+        CategoriaResponseDTO categoriaResponseDTO = categoriasService.obtenerPorId(id).orElse(null);
         if (categoriaResponseDTO != null) {
             return ResponseEntity.status(HttpStatus.FOUND).body(categoriaResponseDTO);
         }
@@ -39,16 +39,16 @@ public class CategoriasController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminarUsuario(@PathVariable Long idcat) {
-        if (categoriasService.eliminarUsuario(idcat)) {
+    public ResponseEntity<Void> eliminarUsuario(@PathVariable Long id) {
+        if (categoriasService.eliminarUsuario(id)) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).body(null);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CategoriaResponseDTO> actualizarCategoria(@PathVariable Long id_cat, @RequestBody CategoriasRequestDTO usuarioRequestDTO) {
-        CategoriaResponseDTO categoriaActualizada = categoriasService.actualizarCategoria(id_cat, usuarioRequestDTO).orElse(null);
+    public ResponseEntity<CategoriaResponseDTO> actualizarCurso(@PathVariable Long id, @RequestBody CategoriasRequestDTO usuarioRequestDTO) {
+        CategoriaResponseDTO categoriaActualizada = categoriasService.actualizarCategoria(id, usuarioRequestDTO).orElse(null);
         if ( categoriaActualizada != null) {
             return ResponseEntity.status(HttpStatus.OK).body(categoriaActualizada);
         }

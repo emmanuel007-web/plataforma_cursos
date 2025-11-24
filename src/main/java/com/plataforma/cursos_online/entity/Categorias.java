@@ -3,24 +3,20 @@ package com.plataforma.cursos_online.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
-@Table(name = "categorias")
+@Table(name = "categoria")
+@NoArgsConstructor
 public class Categorias {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idcat;
+    private Long id;
 
     @Column(nullable = false)
     private String nombre;
-
-    @Column(nullable = false)
-    private String descripcion;
-
-    @Column(nullable = false)
-    private Boolean activo;
 
 
 }

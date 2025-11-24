@@ -24,15 +24,11 @@ public class CategoriasService {
         CategoriaResponseDTO response = new CategoriaResponseDTO();
         Categorias categorias = new Categorias();
         categorias.setNombre(categoriasRequestDTO.getNombre());
-        categorias.setDescripcion(categoriasRequestDTO.getDescripcion());
-        categorias.setActivo(categoriasRequestDTO.getActivo());
 
         categoriasRepository.save(categorias);
 
-        response.setIdcat(categorias.getIdcat());
+        response.setId(categorias.getId());
         response.setNombre(categorias.getNombre());
-        response.setDescripcion(categorias.getDescripcion());
-        response.setActivo(categorias.getActivo());
 
         return response;
     }
@@ -44,10 +40,8 @@ public class CategoriasService {
         List<CategoriaResponseDTO> response = new ArrayList<>();
         for (Categorias categoria : categorias) {
             CategoriaResponseDTO responseDTO = new CategoriaResponseDTO();
-            responseDTO.setIdcat(categoria.getIdcat());
+            responseDTO.setId(categoria.getId());
             responseDTO.setNombre(categoria.getNombre());
-            responseDTO.setDescripcion(categoria.getDescripcion());
-            responseDTO.setActivo(categoria.getActivo());
 
             response.add(responseDTO);
         }
@@ -56,16 +50,14 @@ public class CategoriasService {
 
 
     @Transactional
-    public Optional<CategoriaResponseDTO> obtenerPorId(Long id_cat) {
-        Optional<Categorias> categoriaEncontrado = categoriasRepository.findById(id_cat);
+    public Optional<CategoriaResponseDTO> obtenerPorId(Long id) {
+        Optional<Categorias> categoriaEncontrado = categoriasRepository.findById(id);
 
         if (categoriaEncontrado.isPresent()) {
             Categorias categoria = categoriaEncontrado.get();
             CategoriaResponseDTO response = new CategoriaResponseDTO();
-            response.setIdcat(categoria.getIdcat());
+            response.setId(categoria.getId());
             response.setNombre(categoria.getNombre());
-            response.setDescripcion(categoria.getDescripcion());
-            response.setActivo(categoria.getActivo());
 
             return Optional.of(response);
         } else {
@@ -74,9 +66,9 @@ public class CategoriasService {
     }
 
     @Transactional
-    public Boolean eliminarUsuario(Long idcat) {
-        if (categoriasRepository.existsById(idcat)) {
-            categoriasRepository.deleteById(idcat);
+    public Boolean eliminarUsuario(Long id) {
+        if (categoriasRepository.existsById(id)) {
+            categoriasRepository.deleteById(id);
             return true;
         }
         return false;
@@ -84,20 +76,16 @@ public class CategoriasService {
 
 
     @Transactional
-    public Optional<CategoriaResponseDTO> actualizarCategoria(Long id_cat, CategoriasRequestDTO categoriasRequestDTO) {
-        Optional<Categorias> CategoriaEncontrado = categoriasRepository.findById(id_cat);
+    public Optional<CategoriaResponseDTO> actualizarCategoria(Long id, CategoriasRequestDTO categoriasRequestDTO) {
+        Optional<Categorias> CategoriaEncontrado = categoriasRepository.findById(id);
         if (CategoriaEncontrado.isPresent()) {
             Categorias categorias = CategoriaEncontrado.get(); // Sobreescrbiendo los campos
             categorias.setNombre(categoriasRequestDTO.getNombre());
-            categorias.setDescripcion(categoriasRequestDTO.getDescripcion());
-            categorias.setActivo(categoriasRequestDTO.getActivo());
             Categorias categoriasActualizado = categoriasRepository.save(categorias);
 
             CategoriaResponseDTO response = new CategoriaResponseDTO();
-            response.setIdcat(categoriasActualizado.getIdcat());
+            response.setId(categoriasActualizado.getId());
             response.setNombre(categoriasActualizado.getNombre());
-            response.setDescripcion(categoriasActualizado.getDescripcion());
-            response.setActivo(categoriasActualizado.getActivo());
 
             return Optional.of(response);
         } else {
