@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: plataforma_cursos
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/CURSOS_ONLINE?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.MySQL8Dialect
+    show-sql: true
+
+server:
+  port: 8080
