@@ -1,11 +1,8 @@
 package com.plataforma.cursos_online.service;
 
 
-import com.plataforma.cursos_online.dto.dtocategorias.CategoriaResponseDTO;
-import com.plataforma.cursos_online.dto.dtocategorias.CategoriasRequestDTO;
 import com.plataforma.cursos_online.dto.dtoestudiantes.EstudiantesRequestDTO;
 import com.plataforma.cursos_online.dto.dtoestudiantes.EstudiantesResponseDTO;
-import com.plataforma.cursos_online.entity.Categorias;
 import com.plataforma.cursos_online.entity.Estudiantes;
 import com.plataforma.cursos_online.repository.EstudianteRepository;
 import jakarta.transaction.Transactional;
